@@ -36,9 +36,15 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr v-for="member in members" :key="member.employee_id">
+                    <tr v-for="member in members" :key="member.id">
+                        <td>{{ member.employee_id }}</td>
                         <td>{{ member.firstname }}</td>
                         <td>{{ member.lastname }}</td>
+                        <td>{{ member.email }}</td>
+                        <td>{{ member.phonenumber }}</td>
+                        <td>{{ member.jobid }}</td>
+                        <td>{{ member.salary }}</td>
+                        <td>{{ member.departmentid }}</td>
                         <td>
                             <button class="btn btn-success" @click="showEditModal = true; selectMember(member);"><span class="glyphicon glyphicon-edit"></span> Edit</button> 
                             <button class="btn btn-danger" @click="showDeleteModal = true; selectMember(member);"><span class="glyphicon glyphicon-trash"></span> Delete</button>
@@ -66,7 +72,7 @@ export default {
         errorMessage: "",
         successMessage: "",
         members: [],
-        newMember: {FIRST_NAME: '', LAST_NAME: '',EMAIL:'',PHONE_NUMBER:'',HIRE_DATE:'',JOB_ID:'',SALARY:'',COMMISSON:'',MANAGER_ID:'',DEPARTMENT_ID:'',BONUS:''},
+        newMember: {firstname: '', lastname: '',email:'',phonenumber:'',jobid:'',salary:'',departmentid:''},
         clickMember: {}
     }
     },
@@ -83,7 +89,8 @@ export default {
                         this.errorMessage = response.data.message;
                     }
                     else{
-                        this.members = response.data.members;
+                      console.warn(response.data.members);
+                       this.members = response.data;
                     }
                 });
         },
@@ -94,7 +101,7 @@ export default {
             axios.post('http://localhost/UAS_PWEB/api.php?crud=create', memForm)
                 .then(function(response){
                     //console.log(response);
-                    this.newMember = {FIRST_NAME: '', LAST_NAME:'',EMAIL:'',PHONE_NUMBER:'',HIRE_DATE:'',JOB_ID:'',SALARY:'',COMMISSON:'',MANAGER_ID:'',DEPARTMENT_ID:'',BONUS:''};
+                    this.newMember = {firstname: '', lastname: '',email:'',phonenumber:'',jobid:'',salary:'',departmentid:''};
                     if(response.data.error){
                         this.errorMessage = response.data.message;
                     }
