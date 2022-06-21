@@ -24,8 +24,15 @@
  
             <table class="table table-bordered table-striped">
                 <thead>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
+                    <th>Employee id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Job Id</th>
+                    <th>Salary</th>
+                    <th>Department Id</th>
+
                     <th>Action</th>
                 </thead>
                 <tbody>

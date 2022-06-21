@@ -23,10 +23,6 @@
                 <input type="text" class="form-control" v-model="newMember.PHONE_NUMBER">
             </div>
             <div class="form-group">
-                <label>HIRE_DATE:</label>
-                <input type="text" class="form-control" v-model="newMember.HIRE_DATE">
-            </div>
-            <div class="form-group">
                 <label>JOB_ID:</label>
                 <input type="text" class="form-control" v-model="newMember.JOB_ID">
             </div>
@@ -35,20 +31,8 @@
                 <input type="text" class="form-control" v-model="newMember.SALARY">
             </div>
             <div class="form-group">
-                <label>COMMISSON:</label>
-                <input type="text" class="form-control" v-model="newMember.COMMISSON">
-            </div>
-            <div class="form-group">
-                <label>MANAGER ID:</label>
-                <input type="text" class="form-control" v-model="newMember.MANAGER_ID">
-            </div>
-            <div class="form-group">
                 <label>DEPARTMENT_ID:</label>
                 <input type="text" class="form-control" v-model="newMember.DEPARTMENT_ID">
-            </div>
-            <div class="form-group">
-                <label>BONUS:</label>
-                <input type="text" class="form-control" v-model="newMember.BONUS">
             </div>
         </div>
         <hr>
@@ -85,10 +69,6 @@
                 <input type="text" class="form-control" v-model="newMember.PHONE_NUMBER">
             </div>
             <div class="form-group">
-                <label>HIRE_DATE:</label>
-                <input type="text" class="form-control" v-model="newMember.HIRE_DATE">
-            </div>
-            <div class="form-group">
                 <label>JOB_ID:</label>
                 <input type="text" class="form-control" v-model="newMember.JOB_ID">
             </div>
@@ -97,20 +77,8 @@
                 <input type="text" class="form-control" v-model="newMember.SALARY">
             </div>
             <div class="form-group">
-                <label>COMMISSON:</label>
-                <input type="text" class="form-control" v-model="newMember.COMMISSON">
-            </div>
-            <div class="form-group">
-                <label>MANAGER ID:</label>
-                <input type="text" class="form-control" v-model="newMember.MANAGER_ID">
-            </div>
-            <div class="form-group">
                 <label>DEPARTMENT_ID:</label>
                 <input type="text" class="form-control" v-model="newMember.DEPARTMENT_ID">
-            </div>
-            <div class="form-group">
-                <label>BONUS:</label>
-                <input type="text" class="form-control" v-model="newMember.BONUS">
             </div>
         </div>
         <hr>
