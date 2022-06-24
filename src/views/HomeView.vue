@@ -6,9 +6,10 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Member List
+                   <h2>Member List
                     <button class="btn btn-primary pull-right" @click="showAddModal = true"><span class="glyphicon glyphicon-plus"></span> Member</button>
                     </h2>
+                  
                 </div>
             </div>
  
@@ -24,7 +25,7 @@
  
             <table class="table table-bordered table-striped">
                 <thead>
-                    <th>Employee id</th>
+                
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -36,15 +37,14 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr v-for="member in members" :key="member.id">
-                        <td>{{ member.employee_id }}</td>
-                        <td>{{ member.firstname }}</td>
-                        <td>{{ member.lastname }}</td>
+                    <tr v-for="member in members" :key="member">  
+                        <td>{{ member.first_name }}</td>
+                        <td>{{ member.last_name }}</td>
                         <td>{{ member.email }}</td>
-                        <td>{{ member.phonenumber }}</td>
-                        <td>{{ member.jobid }}</td>
+                        <td>{{ member.phone_number }}</td>
+                        <td>{{ member.job_id }}</td>
                         <td>{{ member.salary }}</td>
-                        <td>{{ member.departmentid }}</td>
+                        <td>{{ member.department_id }}</td>
                         <td>
                             <button class="btn btn-success" @click="showEditModal = true; selectMember(member);"><span class="glyphicon glyphicon-edit"></span> Edit</button> 
                             <button class="btn btn-danger" @click="showDeleteModal = true; selectMember(member);"><span class="glyphicon glyphicon-trash"></span> Delete</button>
@@ -76,24 +76,26 @@ export default {
         clickMember: {}
     }
     },
-    mounted: function(){
-        this.getAllMembers();
+   async mounted(){
+        let resultMember = await  axios.get('http://localhost/UAS_PWEB/api.php');
+        console.warn(resultMember);
+        this.members = resultMember.data.members;
     },
  
     methods:{
-        getAllMembers: function(){
-            axios.get('http://localhost/UAS_PWEB/api.php')
-                .then(function(response){
-                    //console.log(response);
-                    if(response.data.error){
-                        this.errorMessage = response.data.message;
-                    }
-                    else{
-                      console.warn(response.data.members);
-                       this.members = response.data;
-                    }
-                });
-        },
+        // getAllMembers: function(){
+        //     axios.get('http://localhost/UAS_PWEB/api.php')
+        //         .then(function(response){
+        //             //console.log(response);
+        //             if(response.data.error){
+        //                 this.errorMessage = response.data.message;
+        //             }
+        //             else{
+        //              // console.warn(response.data.members);
+        //                this.members = response.data;
+        //             }
+        //         });
+        // },
  
         saveMember: function(){
             //console.log(app.newMember);
