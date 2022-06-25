@@ -17,7 +17,10 @@
         <div class="col-lg-12">
           <table class="table table-bordered table-striped">
             <thead>
-              <tr class="text-center bg-info text-light">
+              <tr
+                class="text-center bg-info text-light"
+                style="font-size: 18px"
+              >
                 <th>Department Id</th>
                 <th>Department Name</th>
                 <th>Manager Id</th>
@@ -27,7 +30,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="text-center" v-for="user in users" :key="user">
+              <tr
+                class="text-center"
+                v-for="user in users"
+                :key="user"
+                style="font-size: 14px"
+              >
                 <td>{{ user.department_id }}</td>
                 <td>{{ user.department_name }}</td>
                 <td>{{ user.manager_id }}</td>
@@ -56,16 +64,14 @@ export default {
   },
   methods: {
     getAllUsers() {
-      axios
-        .get("http://localhost/UAS_PWEB/apiDep.php?action=read")
-        .then((res) => {
-          if (res.data.error) {
-            this.errorMsg = res.data.message;
-          } else {
-            // console.warn(res.data.users);
-            this.users = res.data.users;
-          }
-        });
+      axios.get("http://localhost/UAS_PWEB/api.php?action=dep").then((res) => {
+        if (res.data.error) {
+          this.errorMsg = res.data.message;
+        } else {
+          // console.warn(res.data.users);
+          this.users = res.data.users;
+        }
+      });
     },
   },
 };

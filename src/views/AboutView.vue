@@ -17,7 +17,10 @@
         <div class="col-lg-12">
           <table class="table table-bordered table-striped">
             <thead>
-              <tr class="text-center bg-info text-light">
+              <tr
+                class="text-center bg-info text-light"
+                style="font-size: 18px"
+              >
                 <th>Job Id</th>
                 <th>Job Name</th>
                 <th>Job Kategori</th>
@@ -27,7 +30,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="text-center" v-for="user in users" :key="user">
+              <tr
+                class="text-center"
+                v-for="user in users"
+                :key="user"
+                style="font-size: 14px"
+              >
                 <td>{{ user.job_id }}</td>
                 <td>{{ user.job_name }}</td>
                 <td>{{ user.job_kategori }}</td>
@@ -56,16 +64,14 @@ export default {
   },
   methods: {
     getAllUsers() {
-      axios
-        .get("http://localhost/UAS_PWEB/apiJobs.php?action=read")
-        .then((res) => {
-          if (res.data.error) {
-            this.errorMsg = res.data.message;
-          } else {
-            // console.warn(res.data.users);
-            this.users = res.data.users;
-          }
-        });
+      axios.get("http://localhost/UAS_PWEB/api.php?action=jobs").then((res) => {
+        if (res.data.error) {
+          this.errorMsg = res.data.message;
+        } else {
+          // console.warn(res.data.users);
+          this.users = res.data.users;
+        }
+      });
     },
   },
 };

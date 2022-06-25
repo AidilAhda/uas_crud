@@ -37,7 +37,10 @@
           <div class="col-lg-12">
             <table class="table table-bordered table-striped">
               <thead>
-                <tr class="text-center bg-info text-light">
+                <tr
+                  class="text-center bg-info text-light"
+                  style="font-size: 18px"
+                >
                   <th>Employee Id</th>
                   <th>First Name</th>
                   <th>Last Name</th>
@@ -51,7 +54,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="text-center" v-for="user in users" :key="user">
+                <tr
+                  class="text-center"
+                  v-for="user in users"
+                  :key="user"
+                  style="font-size: 14px"
+                >
                   <td>{{ user.employee_id }}</td>
                   <td>{{ user.first_name }}</td>
                   <td>{{ user.last_name }}</td>
