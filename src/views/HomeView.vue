@@ -375,19 +375,26 @@ export default {
   },
   methods: {
     getAllUsers() {
-      axios.get("http://localhost/UAS_PWEB/api.php?action=read").then((res) => {
-        if (res.data.error) {
-          this.errorMsg = res.data.message;
-        } else {
-          // console.warn(res.data.users);
-          this.users = res.data.users;
-        }
-      });
+      axios
+        .get(
+          "https://api-pegawai.000webhostapp.com/UAS_PWEB/api.php?action=read"
+        )
+        .then((res) => {
+          if (res.data.error) {
+            this.errorMsg = res.data.message;
+          } else {
+            // console.warn(res.data.users);
+            this.users = res.data.users;
+          }
+        });
     },
     addUsers() {
       var formData = this.toFormData(this.newUsers);
       axios
-        .post("http://localhost/UAS_PWEB/api.php?action=create", formData)
+        .post(
+          "https://api-pegawai.000webhostapp.com/UAS_PWEB/api.php?action=create",
+          formData
+        )
         .then((res) => {
           this.newUsers = {
             employee_id: "",
@@ -410,7 +417,10 @@ export default {
     updateUser() {
       var formData = this.toFormData(this.currentUser);
       axios
-        .post("http://localhost/UAS_PWEB/api.php?action=update", formData)
+        .post(
+          "https://api-pegawai.000webhostapp.com/UAS_PWEB/api.php?action=update",
+          formData
+        )
         .then((res) => {
           this.currentUser = {};
           if (res.data.error) {
@@ -424,7 +434,10 @@ export default {
     deleteUser() {
       var formData = this.toFormData(this.currentUser);
       axios
-        .post("http://localhost/UAS_PWEB/api.php?action=delete", formData)
+        .post(
+          "https://api-pegawai.000webhostapp.com/UAS_PWEB/api.php?action=delete",
+          formData
+        )
         .then((res) => {
           this.currentUser = {};
           if (res.data.error) {
