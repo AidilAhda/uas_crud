@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="dep">
     <div id="app">
       <div class="container-fluid">
         <div class="row bg-dark">
@@ -8,7 +8,7 @@
               class="text-center text-light display-4 pt-2"
               style="font-size: 25px"
             >
-              Semua Pekerjaan
+              Semua Department
             </p>
           </div>
         </div>
@@ -18,22 +18,22 @@
           <table class="table table-bordered table-striped">
             <thead>
               <tr class="text-center bg-info text-light">
-                <th>Job Id</th>
-                <th>Job Name</th>
-                <th>Job Kategori</th>
-                <th>Job Deskripsi</th>
-                <th>Min Salary</th>
-                <th>Max Salary</th>
+                <th>Department Id</th>
+                <th>Department Name</th>
+                <th>Manager Id</th>
+                <th>Manager Name</th>
+                <th>Manager StartDate</th>
+                <th>Department Region</th>
               </tr>
             </thead>
             <tbody>
               <tr class="text-center" v-for="user in users" :key="user">
-                <td>{{ user.job_id }}</td>
-                <td>{{ user.job_name }}</td>
-                <td>{{ user.job_kategori }}</td>
-                <td>{{ user.job_deskripsi }}</td>
-                <td>{{ user.min_salary }}</td>
-                <td>{{ user.max_salary }}</td>
+                <td>{{ user.department_id }}</td>
+                <td>{{ user.department_name }}</td>
+                <td>{{ user.manager_id }}</td>
+                <td>{{ user.manager_name }}</td>
+                <td>{{ user.manager_startdate }}</td>
+                <td>{{ user.department_region }}</td>
               </tr>
             </tbody>
           </table>
@@ -57,7 +57,7 @@ export default {
   methods: {
     getAllUsers() {
       axios
-        .get("http://localhost/UAS_PWEB/apiJobs.php?action=read")
+        .get("http://localhost/UAS_PWEB/apiDep.php?action=read")
         .then((res) => {
           if (res.data.error) {
             this.errorMsg = res.data.message;
