@@ -64,18 +64,14 @@ export default {
   },
   methods: {
     getAllUsers() {
-      axios
-        .get(
-          "https://api-pegawai.000webhostapp.com/UAS_PWEB/api.php?action=jobs"
-        )
-        .then((res) => {
-          if (res.data.error) {
-            this.errorMsg = res.data.message;
-          } else {
-            // console.warn(res.data.users);
-            this.users = res.data.users;
-          }
-        });
+      axios.get("http://localhost/UAS_PWEB/api.php?action=jobs").then((res) => {
+        if (res.data.error) {
+          this.errorMsg = res.data.message;
+        } else {
+          // console.warn(res.data.users);
+          this.users = res.data.users;
+        }
+      });
     },
   },
 };

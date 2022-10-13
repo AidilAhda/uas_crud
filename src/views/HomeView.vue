@@ -155,13 +155,17 @@
                   />
                 </div>
                 <div class="form-group">
-                  <input
-                    type="text"
-                    name="job_id"
-                    class="form-control form-control-lg"
-                    placeholder="Job id"
-                    v-model="newUsers.job_id"
-                  />
+                  <label for="">Jobs ID</label>
+                  <div class="form-check">
+                    <div class="input-group mb-3">
+                      <select v-model="newUsers.job_id">
+                        <option disabled value="">Please Choose One</option>
+                        <option v-for="idJob in idJobs" :key="idJob">
+                          {{ idJob.job_id }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <input
@@ -173,14 +177,17 @@
                   />
                 </div>
                 <div class="form-group">
-                  <input
-                    type="text"
-                    name="department_id"
-                    class="form-control form-control-lg"
-                    placeholder="Department id"
-                    v-model="newUsers.department_id"
-                  />
+                  <label for="">Department ID</label>
+                  <div class="input-group mb-3">
+                    <select v-model="newUsers.department_id">
+                      <option disabled value="">Please Choose One</option>
+                      <option v-for="idDep in idDeps" :key="idDep">
+                        {{ idDep.department_id }}
+                      </option>
+                    </select>
+                  </div>
                 </div>
+
                 <div class="form-group">
                   <button
                     class="btn btn-info btn-block btn-lg"
@@ -357,6 +364,8 @@ export default {
       errorMsg: "",
       successMsg: "",
       users: [],
+      idDeps: [],
+      idJobs: [],
       newUsers: {
         employee_id: "",
         first_name: "",
@@ -372,29 +381,48 @@ export default {
   },
   mounted: function () {
     this.getAllUsers();
+    this.getAllIdDep();
+    this.getAllIdJobs();
   },
   methods: {
     getAllUsers() {
+      axios.get("http://localhost/UAS_PWEB/api.php?action=read").then((res) => {
+        if (res.data.error) {
+          this.errorMsg = res.data.message;
+        } else {
+          // console.warn(res.data.users);
+          this.users = res.data.users;
+        }
+      });
+    },
+    getAllIdDep() {
       axios
-        .get(
-          "https://api-pegawai.000webhostapp.com/UAS_PWEB/api.php?action=read"
-        )
+        .get("http://localhost/UAS_PWEB/api.php?action=idDep")
         .then((res) => {
           if (res.data.error) {
             this.errorMsg = res.data.message;
           } else {
-            // console.warn(res.data.users);
-            this.users = res.data.users;
+            //console.warn(res.data.users.department_id);
+            this.idDeps = res.data.users;
+          }
+        });
+    },
+    getAllIdJobs() {
+      axios
+        .get("http://localhost/UAS_PWEB/api.php?action=idJobs")
+        .then((res) => {
+          if (res.data.error) {
+            this.errorMsg = res.data.message;
+          } else {
+            console.warn(res.data.users);
+            this.idJobs = res.data.users;
           }
         });
     },
     addUsers() {
       var formData = this.toFormData(this.newUsers);
       axios
-        .post(
-          "https://api-pegawai.000webhostapp.com/UAS_PWEB/api.php?action=create",
-          formData
-        )
+        .post("http://localhost/UAS_PWEB/api.php?action=create", formData)
         .then((res) => {
           this.newUsers = {
             employee_id: "",
@@ -417,10 +445,7 @@ export default {
     updateUser() {
       var formData = this.toFormData(this.currentUser);
       axios
-        .post(
-          "https://api-pegawai.000webhostapp.com/UAS_PWEB/api.php?action=update",
-          formData
-        )
+        .post("http://localhost/UAS_PWEB/api.php?action=update", formData)
         .then((res) => {
           this.currentUser = {};
           if (res.data.error) {
@@ -434,10 +459,7 @@ export default {
     deleteUser() {
       var formData = this.toFormData(this.currentUser);
       axios
-        .post(
-          "https://api-pegawai.000webhostapp.com/UAS_PWEB/api.php?action=delete",
-          formData
-        )
+        .post("http://localhost/UAS_PWEB/api.php?action=delete", formData)
         .then((res) => {
           this.currentUser = {};
           if (res.data.error) {
